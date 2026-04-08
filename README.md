@@ -10,7 +10,7 @@
 
 **A full-stack cinema seat booking system with real-time availability tracking.**
 
-[🚀 Live Demo](#live-demo) • [📹 Demo Video](#demo-video) • [⚙️ Installation](#installation) • [📖 Features](#features)
+[🚀 Live Demo](https://movie-ticket-booking-system-1-pnyt.onrender.com) • [📹 Demo Video](#demo-video) • [⚙️ Installation](#installation) • [📖 Features](#features)
 
 </div>
 
