@@ -79,8 +79,11 @@ export default function App() {
       method: 'DELETE'
     });
     if (res.ok) {
-      fetchHistory();
-      fetchShows();
+      await fetchHistory();
+      await fetchShows();
+      if (selectedShow && selectedShow.id === h.show_id) {
+        await selectShow({ ...selectedShow });
+      }
     }
   };
 
