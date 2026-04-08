@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-const API = 'http://localhost:5000';
-
+const API = 'https://your-backend-render-url.onrender.com';
 export default function App() {
   const [tab, setTab] = useState('book');
   const [shows, setShows] = useState([]);
