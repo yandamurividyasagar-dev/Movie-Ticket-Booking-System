@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+
 const API = 'https://movie-ticket-booking-system-jnxo.onrender.com';
+
 export default function App() {
   const [tab, setTab] = useState('book');
   const [shows, setShows] = useState([]);
@@ -69,6 +71,17 @@ export default function App() {
       setMsg({ type: 'error', text: 'Server error. Is backend running?' });
     }
     setLoading(false);
+  };
+
+  const deleteBooking = async (h) => {
+    if (!window.confirm(`Delete booking for ${h.name}?`)) return;
+    const res = await fetch(`${API}/history/${h.show_id}/${encodeURIComponent(h.name)}/${encodeURIComponent(h.booked_at)}`, {
+      method: 'DELETE'
+    });
+    if (res.ok) {
+      fetchHistory();
+      fetchShows();
+    }
   };
 
   const cancelSeat = async (seat) => {
@@ -189,9 +202,14 @@ export default function App() {
                 <div className="hist-row"><span>Seats</span><strong>{h.seats.join(', ')}</strong></div>
                 <div className="hist-row"><span>Price per seat</span><strong>Rs. {h.price_per_seat}</strong></div>
                 <div className="hist-row"><span>Booked at</span><strong>{h.booked_at}</strong></div>
-                <button className="btn btn-print" onClick={() => setPrintTicket(printTicket?.id === h.id ? null : h)}>
-                  {printTicket?.id === h.id ? 'Hide ticket' : 'Print ticket'}
-                </button>
+                <div className="hist-actions">
+                  <button className="btn btn-print" onClick={() => setPrintTicket(printTicket?.id === h.id ? null : h)}>
+                    {printTicket?.id === h.id ? 'Hide ticket' : 'Print ticket'}
+                  </button>
+                  <button className="btn btn-delete" onClick={() => deleteBooking(h)}>
+                    Delete
+                  </button>
+                </div>
 
                 {printTicket?.id === h.id && (
                   <div className="ticket">

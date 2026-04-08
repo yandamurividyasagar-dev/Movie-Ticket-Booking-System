@@ -115,6 +115,20 @@ app.delete('/cancel', (req, res) => {
   });
 });
 
+// DELETE cancel entire booking from history
+app.delete('/history/:show_id/:customer_name/:booked_at', (req, res) => {
+  const { show_id, customer_name, booked_at } = req.params;
+  db.run(
+    'DELETE FROM bookings WHERE show_id = ? AND customer_name = ? AND booked_at = ?',
+    [show_id, customer_name, booked_at],
+    function(err) {
+      if (err) return res.status(500).json({ error: err.message });
+      if (this.changes === 0) return res.status(404).json({ error: 'Booking not found' });
+      res.json({ message: 'Booking deleted successfully' });
+    }
+  );
+});
+
 // GET booking history
 app.get('/history', (req, res) => {
   const sql = `
