@@ -13,7 +13,8 @@ A simple cinema seat booking app where users can view seats, book tickets, and c
 
 ## Demo
 
-https://github.com/user-attachments/assets/43c58285-c700-4a68-9041-3ffb8785ee49
+
+https://github.com/user-attachments/assets/789a3a6a-4f0c-42e2-8c11-67bda5e26a66
 
 ---
 
